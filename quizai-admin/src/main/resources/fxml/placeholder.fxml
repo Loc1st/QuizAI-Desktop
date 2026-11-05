@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.quizai.admin.ui.components.StatusBadge?>
+<?import com.quizai.admin.ui.components.LineIcon?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quizai.admin.ui.controllers.PlaceholderController" fitToWidth="true" hbarPolicy="NEVER" styleClass="content-scroll">
+    <content>
+        <VBox styleClass="page" spacing="24">
+            <Label text="KHÔNG GIAN GIẢNG DẠY" styleClass="eyebrow"/>
+            <Label fx:id="title" styleClass="page-title" wrapText="true"/>
+            <VBox styleClass="card,placeholder-card" spacing="20">
+                <LineIcon kind="layers"/>
+                <StatusBadge text="Chưa triển khai" tone="purple"/>
+                <Label text="Giao diện đang được chuẩn bị" styleClass="section-title" wrapText="true"/>
+                <Label fx:id="description" styleClass="muted" wrapText="true"/>
+                <Label text="Đây là bản trình diễn giao diện. Chưa có dữ liệu thực, không thực hiện lưu trữ hoặc gọi dịch vụ." styleClass="caption" wrapText="true"/>
+                <HBox><Button text="Về Tổng quan" onAction="#backToOverview" styleClass="primary"/></HBox>
+            </VBox>
+            <VBox fx:id="examStates" styleClass="card" spacing="16">
+                <Label text="Phân biệt trạng thái bài làm" styleClass="section-title"/>
+                <Label text="Chú giải minh họa; không phản ánh một lượt thi thực tế." styleClass="caption" wrapText="true"/>
+                <FlowPane hgap="12" vgap="12">
+                    <StatusBadge text="Bản nháp · Cục bộ" tone="neutral"/>
+                    <StatusBadge text="Chờ đồng bộ · Chưa xác nhận" tone="amber"/>
+                    <StatusBadge text="Server xác nhận · Ví dụ trạng thái" tone="green"/>
+                    <StatusBadge text="Nộp muộn · Chờ xét duyệt" tone="blue"/>
+                </FlowPane>
+                <Label text="Bài muộn chỉ được tính điểm sau khi được duyệt. Từ chối vẫn tính một lượt; quyết định cần lý do." styleClass="muted" wrapText="true"/>
+            </VBox>
+        </VBox>
+    </content>
+</ScrollPane>

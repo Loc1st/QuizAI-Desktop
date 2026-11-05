@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="sidebarRoot" fx:controller="com.quizai.admin.ui.controllers.SidebarController"
+      styleClass="sidebar" prefWidth="238" minWidth="238" maxWidth="238" spacing="22">
+    <HBox alignment="CENTER_LEFT" spacing="11" styleClass="brand">
+        <Label text="Q" styleClass="brand-mark"/>
+        <VBox spacing="1"><Label text="QuizAI" styleClass="brand-name"/><Label text="KHÔNG GIAN GIẢNG DẠY" styleClass="brand-caption"/></VBox>
+    </HBox>
+    <Label text="QUẢN LÝ GIẢNG DẠY" styleClass="eyebrow"/>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="sidebar-scroll" VBox.vgrow="ALWAYS">
+        <content><VBox fx:id="navigation" spacing="6"/></content>
+    </ScrollPane>
+    <VBox fx:id="sidebarNote" styleClass="sidebar-note" spacing="7" minHeight="-Infinity">
+        <Label text="Đồng hành cùng lớp học" styleClass="small-heading" wrapText="true"/>
+        <Label text="Một nơi để chuẩn bị và theo dõi việc học." styleClass="caption" wrapText="true"/>
+    </VBox>
+    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="profile">
+        <Label text="AL" styleClass="avatar"/>
+        <VBox spacing="3"><Label text="ThS. An Linh" styleClass="small-heading"/><Label text="Giảng viên · Minh họa" styleClass="caption"/></VBox>
+    </HBox>
+</VBox>

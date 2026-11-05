@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: quizai-server
+
+# Local development foundation only; Internet HTTPS/WSS comes in a later task.
+server:
+  address: 127.0.0.1
+  port: 8080

@@ -1,0 +1,18 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin'
+}
+
+dependencies {
+    implementation project(':quizai-common')
+}
+
+javafx {
+    version = '21.0.9'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+application {
+    mainModule = 'com.quizai.admin'
+    mainClass = 'com.quizai.admin.QuizAIAdminApplication'
+}

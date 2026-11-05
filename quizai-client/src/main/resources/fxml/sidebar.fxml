@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="sidebarRoot" fx:controller="com.quizai.client.ui.controllers.SidebarController"
+      styleClass="sidebar" prefWidth="238" minWidth="238" maxWidth="238" spacing="22">
+    <HBox alignment="CENTER_LEFT" spacing="11" styleClass="brand">
+        <Label text="Q" styleClass="brand-mark"/>
+        <VBox spacing="1"><Label text="QuizAI" styleClass="brand-name"/><Label text="KHÔNG GIAN HỌC TẬP" styleClass="brand-caption"/></VBox>
+    </HBox>
+    <Label text="HỌC TẬP CỦA BẠN" styleClass="eyebrow"/>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="sidebar-scroll" VBox.vgrow="ALWAYS">
+        <content><VBox fx:id="navigation" spacing="6"/></content>
+    </ScrollPane>
+    <VBox fx:id="sidebarNote" styleClass="sidebar-note" spacing="7" minHeight="-Infinity">
+        <Label text="Học theo nhịp của bạn" styleClass="small-heading" wrapText="true"/>
+        <Label text="Mỗi lần luyện tập là một bước tiến." styleClass="caption" wrapText="true"/>
+    </VBox>
+    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="profile">
+        <Label text="MA" styleClass="avatar"/>
+        <VBox spacing="3"><Label text="Minh Anh" styleClass="small-heading"/><Label text="Sinh viên · Minh họa" styleClass="caption"/></VBox>
+    </HBox>
+</VBox>

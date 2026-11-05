@@ -1,0 +1,5 @@
+plugins {
+    id 'java-library'
+}
+
+// Only safe shared DTOs/enums belong here; no persistence or UI dependencies.

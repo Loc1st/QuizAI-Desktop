@@ -1,0 +1,5 @@
+plugins {
+    id 'java'
+}
+
+// Future TCP demonstrations are restricted to LAN/localhost (DEC-025).

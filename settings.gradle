@@ -1,0 +1,3 @@
+rootProject.name = 'QuizAI-Desktop'
+
+include 'quizai-client', 'quizai-admin', 'quizai-server', 'quizai-common', 'quizai-tcp-demo'

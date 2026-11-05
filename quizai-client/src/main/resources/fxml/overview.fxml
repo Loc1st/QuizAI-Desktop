@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import com.quizai.client.ui.components.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quizai.client.ui.controllers.OverviewController" fitToWidth="true" hbarPolicy="NEVER" styleClass="content-scroll">
+<content><VBox styleClass="page" spacing="22">
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Chào Minh Anh, cùng học nhé!" styleClass="page-title" wrapText="true"/>
+            <Label text="Một chút tập trung hôm nay, một bước tiến ngày mai." styleClass="muted" wrapText="true"/>
+        </VBox>
+        <StatusBadge text="Không gian sinh viên" tone="purple"/>
+    </HBox>
+    <GridPane hgap="16"><columnConstraints><ColumnConstraints percentWidth="33.333333333333336" hgrow="ALWAYS" minWidth="0"/><ColumnConstraints percentWidth="33.333333333333336" hgrow="ALWAYS" minWidth="0"/><ColumnConstraints percentWidth="33.333333333333336" hgrow="ALWAYS" minWidth="0"/></columnConstraints><children><MetricCard title="Bộ đề cá nhân" value="12" note="3 môn học đang ôn tập" icon="layers" GridPane.columnIndex="0"/><MetricCard title="Câu đã luyện" value="154" note="Trong tuần minh họa" icon="check" GridPane.columnIndex="1"/><MetricCard title="Tỷ lệ trả lời đúng" value="72%" note="Chỉ số luyện tập minh họa" icon="chart" GridPane.columnIndex="2"/></children></GridPane>
+    <GridPane hgap="20" vgap="20">
+        <columnConstraints><ColumnConstraints percentWidth="60" hgrow="ALWAYS" minWidth="0"/><ColumnConstraints percentWidth="40" hgrow="ALWAYS" minWidth="0"/></columnConstraints>
+        <children>
+            <VBox styleClass="card" spacing="12" GridPane.columnIndex="0">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <VBox spacing="4"><Label text="Nhịp học của bạn" styleClass="section-title"/><Label text="Số câu đã luyện · Dữ liệu mẫu" styleClass="caption" wrapText="true"/></VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="7 NGÀY" styleClass="period"/>
+                </HBox>
+                <BarChart fx:id="activityChart" animated="false" legendVisible="false" barGap="6" categoryGap="22" prefHeight="188" minHeight="188" maxHeight="188" verticalGridLinesVisible="false" alternativeRowFillVisible="false" alternativeColumnFillVisible="false">
+<xAxis><CategoryAxis tickLength="0" gapStartAndEnd="true"/></xAxis>
+<yAxis><NumberAxis lowerBound="0" upperBound="40" tickUnit="10" autoRanging="false" minorTickVisible="false" tickLength="0"/></yAxis>
+</BarChart>
+            </VBox>
+            <VBox styleClass="hero-card" spacing="13" GridPane.columnIndex="1">
+                <StatusBadge text="LUYỆN TẬP TỰ DO" tone="purple"/>
+                <Label text="Tích lũy kiến thức,&#10;theo cách của bạn." styleClass="hero-title" wrapText="true"/>
+                <Label text="Ôn tập từ bộ đề cá nhân và tài liệu của bạn." styleClass="muted" wrapText="true"/>
+                <Region VBox.vgrow="ALWAYS" minHeight="0"/>
+                <HBox><Button text="Khám phá luyện tập" styleClass="primary" onAction="#openPractice"><graphic><LineIcon kind="arrow"/></graphic></Button></HBox>
+            </VBox>
+        </children>
+    </GridPane>
+
+    <GridPane hgap="20" vgap="20">
+        <columnConstraints><ColumnConstraints percentWidth="60" hgrow="ALWAYS" minWidth="0"/><ColumnConstraints percentWidth="40" hgrow="ALWAYS" minWidth="0"/></columnConstraints>
+        <children>
+            <VBox styleClass="card" spacing="16">
+                <VBox spacing="4"><Label text="Tiếp nối việc học" styleClass="section-title"/><Label text="Bộ đề cá nhân · Tiến độ minh họa" styleClass="caption" wrapText="true"/></VBox>
+                <HBox spacing="14" alignment="CENTER_LEFT"><Label text="JV" styleClass="course-icon"/><VBox spacing="7" HBox.hgrow="ALWAYS"><Label text="Lập trình Java" styleClass="small-heading"/><Label text="Lập trình hướng đối tượng · 18 / 30 câu" styleClass="caption" wrapText="true"/><ProgressBar progress="0.6" maxWidth="Infinity"/></VBox><Label text="60%" styleClass="small-heading"/></HBox>
+                <Separator/>
+                <HBox spacing="14" alignment="CENTER_LEFT"><Label text="DB" styleClass="course-icon,teal-icon"/><VBox spacing="7" HBox.hgrow="ALWAYS"><Label text="Cơ sở dữ liệu" styleClass="small-heading"/><Label text="Truy vấn SQL cơ bản · 12 / 20 câu" styleClass="caption" wrapText="true"/><ProgressBar progress="0.6" maxWidth="Infinity" styleClass="teal-progress"/></VBox><Label text="60%" styleClass="small-heading"/></HBox>
+            </VBox>
+            <VBox styleClass="card,tutor-card" spacing="14" GridPane.columnIndex="1">
+                <HBox spacing="10" alignment="CENTER_LEFT"><Label text="✦" styleClass="tutor-symbol"/><Label text="Gia sư AI" styleClass="section-title"/></HBox>
+                <Label text="Một góc để hỏi, hiểu và khám phá." styleClass="muted" wrapText="true"/>
+                <Label text="Chỉ hỗ trợ tự học. Chưa kết nối AI trong bản trình diễn." styleClass="caption" wrapText="true"/>
+                <HBox><Button text="Xem khu vực gia sư" onAction="#openTutor" styleClass="secondary"/></HBox>
+            </VBox>
+        </children>
+    </GridPane>
+    <VBox styleClass="card,table-card" spacing="16">
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <VBox spacing="4"><Label text="Bài kiểm tra được giao" styleClass="section-title"/><Label text="Thi chính thức · Tách biệt với luyện tập tự do" styleClass="caption" wrapText="true"/></VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Xem khu vực bài thi" styleClass="text-button" onAction="#openExams"/>
+        </HBox>
+        <TableView fx:id="overviewTable" prefHeight="203" minHeight="203" maxHeight="203" fixedCellSize="49">
+<columns>
+<TableColumn fx:id="nameColumn" text="BÀI KIỂM TRA" prefWidth="230" minWidth="180" sortable="false" reorderable="false"/>
+<TableColumn fx:id="subjectColumn" text="MÔN HỌC" prefWidth="210" minWidth="150" sortable="false" reorderable="false"/>
+<TableColumn fx:id="deadlineColumn" text="HẠN NỘP · MẪU" prefWidth="140" minWidth="120" sortable="false" reorderable="false"/>
+<TableColumn fx:id="statusColumn" text="TRẠNG THÁI" prefWidth="200" minWidth="180" sortable="false" reorderable="false"/>
+</columns>
+</TableView>
+        <Label text="Trạng thái trong bảng là ví dụ. Chờ đồng bộ chưa có nghĩa server đã xác nhận." styleClass="caption" wrapText="true"/>
+    </VBox>
+    <HBox alignment="CENTER_LEFT" spacing="8"><Label text="QuizAI Desktop" styleClass="caption"/><Region HBox.hgrow="ALWAYS"/><Label text="Bản trình diễn UI · Không có thao tác lưu dữ liệu" styleClass="caption"/></HBox>
+</VBox></content>
+</ScrollPane>

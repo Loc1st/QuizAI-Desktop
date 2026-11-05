@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quizai.admin.ui.controllers.ShellController" styleClass="theme-light">
+    <left><fx:include fx:id="sidebar" source="sidebar.fxml"/></left>
+    <center>
+        <BorderPane>
+            <top>
+                <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="16">
+                    <VBox spacing="3"><Label text="QuizAI / Giảng dạy" styleClass="caption"/><Label fx:id="pageTitle" text="Tổng quan" styleClass="topbar-title"/></VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="DỮ LIỆU MINH HỌA" styleClass="demo-badge"/>
+                    <Label text="Chưa kết nối backend" styleClass="caption"/>
+                </HBox>
+            </top>
+            <center><StackPane fx:id="contentHost"/></center>
+        </BorderPane>
+    </center>
+</BorderPane>
