@@ -55,4 +55,5 @@ public final class SidebarController {
 
     public void setOnNavigate(Consumer<Screen> handler) { onNavigate = handler; }
     public void select(Screen screen) { group.selectToggle(buttons.get(screen)); }
+    public void setSignedIn(boolean value) { navigation.setDisable(!value); }
 }

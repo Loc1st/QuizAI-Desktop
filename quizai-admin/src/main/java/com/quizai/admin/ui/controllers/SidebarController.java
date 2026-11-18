@@ -28,6 +28,7 @@ public final class SidebarController {
             button.setMaxWidth(Double.MAX_VALUE);
             button.setMinHeight(44);
             button.setWrapText(true);
+            if (screen == Screen.LATE) { button.setDisable(true); button.setTooltip(new javafx.scene.control.Tooltip("Đã hoãn theo CR-001")); }
             button.getStyleClass().add("nav-item");
             button.setOnAction(event -> onNavigate.accept(screen));
             buttons.put(screen, button);
@@ -55,4 +56,5 @@ public final class SidebarController {
 
     public void setOnNavigate(Consumer<Screen> handler) { onNavigate = handler; }
     public void select(Screen screen) { group.selectToggle(buttons.get(screen)); }
+    public void setSignedIn(boolean value) { navigation.setDisable(!value); }
 }

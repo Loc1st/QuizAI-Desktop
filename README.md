@@ -63,7 +63,7 @@ UI sử dụng font hệ thống Windows `Segoe UI`, theme class `theme-light` v
 
 Scene mặc định 1280 × 800; cửa sổ tối thiểu 1024 × 700. Nội dung dài cuộn trong ScrollPane, sidebar thu gọn khoảng cách ở chiều cao nhỏ. Hai module giữ cùng tên token/style; Common không phụ thuộc JavaFX. Các giá trị trong `ui/demo/DemoData` là fixture trình bày cố định; không có service backend hoặc thao tác lưu/nộp thật.
 
-Xem [báo cáo TASK-002](docs/TASK-002_REPORT.md) và [ảnh giao diện thực tế](docs/ui-previews/). Các mục ngoài Tổng quan hiện ghi rõ **Chưa triển khai**.
+Xem [báo cáo TASK-002](docs/archive/db-v1/TASK-002_REPORT.md) và [ảnh giao diện thực tế](docs/ui-previews/). Các mục ngoài Tổng quan hiện ghi rõ **Chưa triển khai**.
 
 Đặt mẫu UI tương lai trong [docs/ui-references](docs/ui-references/README.md). Các mẫu không tự mở rộng yêu cầu nghiệp vụ.
 

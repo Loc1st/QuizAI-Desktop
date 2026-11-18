@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: ${QUIZAI_V2_TEST_DB_URL}
+    username: ${QUIZAI_V2_TEST_DB_USERNAME}
+    password: ${QUIZAI_V2_TEST_DB_PASSWORD}
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+quizai:
+  classes:
+    join-code-key: ${QUIZAI_CLASS_JOIN_CODE_KEY:}

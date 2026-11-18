@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quizai.client.ui.controllers.AuthController" fitToWidth="true" styleClass="content-scroll" hbarPolicy="NEVER">
+    <content>
+        <VBox styleClass="page" spacing="20" alignment="TOP_CENTER">
+            <VBox styleClass="card,auth-card" spacing="18" maxWidth="520">
+                <Label text="Chào mừng đến QuizAI" styleClass="page-title" wrapText="true"/>
+                <Label text="Đăng nhập để tham gia và quản lý lớp học của bạn." styleClass="muted" wrapText="true"/>
+                <Label fx:id="roleLabel" styleClass="caption" wrapText="true"/>
+                <CheckBox fx:id="registerMode" text="Tạo tài khoản mới"/>
+                <VBox fx:id="fields" spacing="12">
+                    <Label text="Email" styleClass="small-heading"/>
+                    <TextField fx:id="email" id="auth-email" promptText="Email của bạn" onAction="#submit" maxWidth="Infinity"/>
+                    <Label text="Mật khẩu" styleClass="small-heading"/>
+                    <PasswordField fx:id="password" id="auth-password" promptText="Mật khẩu" onAction="#submit" maxWidth="Infinity"/>
+                    <PasswordField fx:id="confirmation" id="auth-confirmation" promptText="Nhập lại mật khẩu" onAction="#submit" maxWidth="Infinity"/>
+                </VBox>
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Button fx:id="submit" id="auth-submit" text="Đăng nhập" onAction="#submit" styleClass="primary" defaultButton="true"/>
+                    <ProgressIndicator fx:id="progress" prefWidth="24" prefHeight="24" visible="false" managed="false"/>
+                </HBox>
+                <Label fx:id="message" id="auth-message" styleClass="feedback" wrapText="true"/>
+            </VBox>
+        </VBox>
+    </content>
+</ScrollPane>

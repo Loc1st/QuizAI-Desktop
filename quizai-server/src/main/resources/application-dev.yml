@@ -1,0 +1,13 @@
+# Configuration template only. Starting with this profile requires separate
+# authorization to access the DEV database; P1 runs dependency/compile tasks only.
+spring:
+  autoconfigure:
+    # Profile lists replace the default list: permit DEV datasource configuration,
+    # while keeping Flyway auto-configuration excluded throughout P1.
+    exclude:
+      - org.springframework.boot.flyway.autoconfigure.FlywayAutoConfiguration
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${QUIZAI_DEV_DB_URL}
+    username: ${QUIZAI_DEV_DB_USERNAME}
+    password: ${QUIZAI_DEV_DB_PASSWORD}

@@ -16,7 +16,7 @@
         <Label text="Một nơi để chuẩn bị và theo dõi việc học." styleClass="caption" wrapText="true"/>
     </VBox>
     <HBox alignment="CENTER_LEFT" spacing="10" styleClass="profile">
-        <Label text="AL" styleClass="avatar"/>
-        <VBox spacing="3"><Label text="ThS. An Linh" styleClass="small-heading"/><Label text="Giảng viên · Minh họa" styleClass="caption"/></VBox>
+        <Label text="Q" styleClass="avatar"/>
+        <VBox spacing="3"><Label text="QuizAI Admin" styleClass="small-heading"/><Label text="Giảng viên" styleClass="caption"/></VBox>
     </HBox>
 </VBox>

@@ -1,0 +1,12 @@
+# Test classpath only; Spring does not activate this profile automatically.
+# Starting a test context with database access needs separate authorization.
+spring:
+  autoconfigure:
+    # Replace the default exclusions to permit TEST datasource configuration only.
+    exclude:
+      - org.springframework.boot.flyway.autoconfigure.FlywayAutoConfiguration
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${QUIZAI_TEST_DB_URL}
+    username: ${QUIZAI_TEST_DB_USERNAME}
+    password: ${QUIZAI_TEST_DB_PASSWORD}

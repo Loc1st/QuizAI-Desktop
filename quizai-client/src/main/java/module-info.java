@@ -1,4 +1,5 @@
 module com.quizai.client {
+    requires com.quizai.common;
     requires javafx.controls;
     requires javafx.fxml;
 

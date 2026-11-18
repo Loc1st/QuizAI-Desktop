@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quizai.admin.ui.controllers.TeacherWorkspaceController" fitToWidth="true" hbarPolicy="NEVER" styleClass="content-scroll">
+    <content><VBox styleClass="page" spacing="18">
+        <ProgressIndicator fx:id="progress" prefWidth="24" prefHeight="24" visible="false" managed="false"/>
+        <Label fx:id="feedback" styleClass="feedback" wrapText="true"/>
+        <VBox fx:id="workspace" spacing="18"/>
+    </VBox></content>
+</ScrollPane>
