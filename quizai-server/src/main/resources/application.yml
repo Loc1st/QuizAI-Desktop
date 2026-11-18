@@ -1,6 +1,25 @@
 spring:
   application:
     name: quizai-server
+  # No database by default, even with JDBC/Flyway on the classpath.
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+      - org.springframework.boot.flyway.autoconfigure.FlywayAutoConfiguration
+  datasource:
+    embedded-database-connection: none
+  flyway:
+    enabled: false
+    clean-disabled: true
+    baseline-on-migrate: false
+  sql:
+    init:
+      mode: never
+  # Defensive settings only: P1 does not add JPA/Hibernate dependencies.
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
 
 # Local development foundation only; Internet HTTPS/WSS comes in a later task.
 server:

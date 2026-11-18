@@ -16,7 +16,7 @@
         <Label text="Mỗi lần luyện tập là một bước tiến." styleClass="caption" wrapText="true"/>
     </VBox>
     <HBox alignment="CENTER_LEFT" spacing="10" styleClass="profile">
-        <Label text="MA" styleClass="avatar"/>
-        <VBox spacing="3"><Label text="Minh Anh" styleClass="small-heading"/><Label text="Sinh viên · Minh họa" styleClass="caption"/></VBox>
+        <Label text="Q" styleClass="avatar"/>
+        <VBox spacing="3"><Label text="QuizAI Client" styleClass="small-heading"/><Label text="Sinh viên" styleClass="caption"/></VBox>
     </HBox>
 </VBox>

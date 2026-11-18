@@ -2,8 +2,116 @@ plugins {
     id 'org.springframework.boot'
 }
 
+// Explicit operator task only; never part of build/test or application startup.
+tasks.register('deployLocalDatabases', JavaExec) {
+    group = 'verification'
+    description = 'Inspect, or migrate and verify, the authorized local TEST then DEV databases.'
+    dependsOn tasks.named('test')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.quizai.server.db.LocalDatabaseDeployment'
+    args providers.gradleProperty('databaseAction').getOrElse('inspect')
+    workingDir projectDir
+}
+
 dependencies {
     implementation project(':quizai-common')
     implementation platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-flyway'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.apache.pdfbox:pdfbox:3.0.8'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'org.flywaydb:flyway-database-postgresql'
+}
+
+sourceSets {
+    integrationTest {
+        java.srcDir 'src/integrationTest/java'
+        resources.srcDir 'src/integrationTest/resources'
+        compileClasspath += sourceSets.main.output + configurations.testRuntimeClasspath
+        runtimeClasspath += output + compileClasspath
+    }
+}
+
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
+
+// Opt-in, V2 TEST only. Java guards run before any connection; never in build/check.
+tasks.register('integrationTest', Test) {
+    group = 'verification'
+    description = 'Run rollback-only PostgreSQL V2 integration tests on quizai_v2_test only.'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    shouldRunAfter tasks.named('test')
+}
+
+tasks.register('v2IntegrationTest') {
+    group = 'verification'
+    description = 'Guarded V2 TEST integration checks; requires local credentials and rolls fixtures back.'
+    dependsOn tasks.named('integrationTest')
+}
+
+// Offline CR-001 preparation has its own source sets: no Spring context or JDBC.
+// This keeps it runnable while unfinished legacy API tests are being integrated.
+sourceSets {
+    v2Schema {
+        compileClasspath += configurations.testCompileClasspath
+        runtimeClasspath += configurations.testRuntimeClasspath
+    }
+    v2SchemaTest {
+        compileClasspath += sourceSets.v2Schema.output + configurations.testCompileClasspath
+        runtimeClasspath += sourceSets.v2Schema.output + configurations.testRuntimeClasspath
+    }
+}
+
+tasks.register('v2SchemaTest', Test) {
+    group = 'verification'
+    description = 'Offline V2 migration inventory, Flyway isolation and target guard tests; no database access.'
+    testClassesDirs = sourceSets.v2SchemaTest.output.classesDirs
+    classpath = sourceSets.v2SchemaTest.runtimeClasspath
+    workingDir projectDir
+}
+
+tasks.named('check') { dependsOn tasks.named('v2SchemaTest') }
+
+tasks.register('prepareV2Schema', JavaExec) {
+    group = 'verification'
+    description = 'Offline V2 source manifest (sources) or environment preview (targets); never connects to PostgreSQL.'
+    dependsOn tasks.named('v2SchemaTest')
+    classpath = sourceSets.v2Schema.runtimeClasspath
+    mainClass = 'com.quizai.server.db.V2SchemaPreparation'
+    args providers.gradleProperty('v2PreparationAction').getOrElse('sources')
+    workingDir projectDir
+}
+
+// Separate operator entry point. Defaults to preview; never a dependency of build/check/startup.
+// Live inspect/deploy additionally require QUIZAI_V2_DATABASE_AUTHORIZATION in the process.
+tasks.register('v2Database', JavaExec) {
+    group = 'verification'
+    description = 'V2 offline preview/freezeRelease; future explicitly authorized TEST-first inspect/deploy.'
+    dependsOn tasks.named('v2SchemaTest')
+    classpath = sourceSets.v2Schema.runtimeClasspath
+    mainClass = 'com.quizai.server.db.V2DatabaseRunner'
+    args providers.gradleProperty('v2DatabaseAction').getOrElse('preview')
+    workingDir projectDir
+}
+
+// Optional local setup only. A normal build/check/startup never runs this task.
+tasks.register('provisionV2Databases', JavaExec) {
+    group = 'verification'
+    description = 'Preview or explicitly provision missing local V2 identities via template1 only.'
+    dependsOn tasks.named('v2SchemaTest')
+    classpath = sourceSets.v2Schema.runtimeClasspath
+    mainClass = 'com.quizai.server.db.V2DatabaseProvisioner'
+    args providers.gradleProperty('v2ProvisionAction').getOrElse('preview')
+    workingDir projectDir
 }

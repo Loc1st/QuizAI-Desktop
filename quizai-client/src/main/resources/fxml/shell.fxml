@@ -9,8 +9,8 @@
                 <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="16">
                     <VBox spacing="3"><Label text="QuizAI / Học tập" styleClass="caption"/><Label fx:id="pageTitle" text="Tổng quan" styleClass="topbar-title"/></VBox>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Label text="DỮ LIỆU MINH HỌA" styleClass="demo-badge"/>
-                    <Label text="Chưa kết nối backend" styleClass="caption"/>
+                    <Label fx:id="sessionLabel" text="Chưa đăng nhập" styleClass="caption"/>
+                    <Button fx:id="logoutButton" text="Đăng xuất" onAction="#logout"/>
                 </HBox>
             </top>
             <center><StackPane fx:id="contentHost"/></center>

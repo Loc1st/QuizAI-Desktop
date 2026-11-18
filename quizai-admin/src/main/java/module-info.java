@@ -1,4 +1,5 @@
 module com.quizai.admin {
+    requires com.quizai.common;
     requires javafx.controls;
     requires javafx.fxml;
 

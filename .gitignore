@@ -41,3 +41,49 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Private V2 source documents (never serve or commit uploads).
+.quizai-private-documents/
+
+# Private local configuration, credentials and runtime evidence.
+.env
+.env.*
+*.env
+.idea/
+**/.gradle/
+**/build/
+*.log
+logs/
+__pycache__/
+*.pyc
+*.dpapi
+*.dpapi.*
+*.clixml
+*credentials*.xml
+*credentials*.json
+*credentials*.yml
+*credentials*.yaml
+*checkpoint*.xml
+*checkpoint*.json
+evidence.json
+runtime-state*.json
+*.dump
+*.backup
+*.bak
+*.sqlite
+*.sqlite3
+*.db
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.pem
+*.key

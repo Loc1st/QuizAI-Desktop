@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quizai.client.ui.controllers.ClassesController" fitToWidth="true" styleClass="content-scroll" hbarPolicy="NEVER">
+    <content>
+        <VBox styleClass="page" spacing="20">
+            <Label text="Lớp học của bạn" styleClass="page-title"/>
+            <Label text="Tham gia bằng mã do giảng viên cung cấp." styleClass="muted" wrapText="true"/>
+            <VBox fx:id="actions" styleClass="card" spacing="12">
+                <Label text="Tham gia lớp" styleClass="section-title"/>
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <TextField fx:id="joinCode" id="class-join-code" promptText="Mã tham gia" onAction="#join" HBox.hgrow="ALWAYS"/>
+                    <Button id="class-join" text="Tham gia" onAction="#join" styleClass="primary"/>
+                    <Button id="classes-refresh" text="Làm mới" onAction="#refresh"/>
+                </HBox>
+            </VBox>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label fx:id="count" styleClass="small-heading"/>
+                <ProgressIndicator fx:id="progress" prefHeight="22" prefWidth="22" visible="false" managed="false"/>
+            </HBox>
+            <Label fx:id="message" styleClass="feedback" wrapText="true"/>
+            <VBox fx:id="classList" spacing="14"/>
+        </VBox>
+    </content>
+</ScrollPane>

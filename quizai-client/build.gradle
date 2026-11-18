@@ -16,3 +16,40 @@ application {
     mainModule = 'com.quizai.client'
     mainClass = 'com.quizai.client.QuizAIClientApplication'
 }
+
+sourceSets {
+    guiSmoke {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+configurations {
+    guiSmokeImplementation.extendsFrom implementation
+    guiSmokeRuntimeOnly.extendsFrom runtimeOnly
+}
+
+tasks.register('javafxSmokeTest', JavaExec) {
+    group = 'verification'
+    description = 'Shows and closes native JavaFX windows for implemented FXML; no backend requests.'
+    dependsOn guiSmokeClasses
+    classpath = sourceSets.guiSmoke.runtimeClasspath
+    mainClass = 'com.quizai.client.ui.JavaFxSmoke'
+    doFirst {
+        def fxModules = files(configurations.guiSmokeRuntimeClasspath.findAll { it.name.startsWith('javafx-') })
+        classpath = sourceSets.guiSmoke.runtimeClasspath - fxModules
+        jvmArgs '--module-path', fxModules.asPath, '--add-modules', 'javafx.controls,javafx.fxml'
+    }
+}
+
+tasks.register('guiBehaviorTest', JavaExec) {
+    group = 'verification'
+    description = 'Exercises native student JavaFX controls against isolated loopback HTTP fixtures; no backend/DB/Gemini.'
+    dependsOn guiSmokeClasses
+    classpath = sourceSets.guiSmoke.runtimeClasspath
+    mainClass = 'com.quizai.client.ui.StudentBehavior'
+    doFirst {
+        def fxModules = files(configurations.guiSmokeRuntimeClasspath.findAll { it.name.startsWith('javafx-') })
+        classpath = sourceSets.guiSmoke.runtimeClasspath - fxModules
+        jvmArgs '--module-path', fxModules.asPath, '--add-modules', 'javafx.controls,javafx.fxml,jdk.httpserver'
+    }
+}
